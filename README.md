@@ -1,4 +1,4 @@
-# [Проект: Mesto](https://vaneksamoylov.github.io/russian-travel/)
+# [Проект: Mesto](https://vaneksamoylov.github.io/mesto/)
 
 ### Обзор
 * Интро
