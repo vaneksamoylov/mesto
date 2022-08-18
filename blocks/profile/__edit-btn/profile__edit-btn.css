@@ -1,0 +1,16 @@
+.profile__edit-btn {
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 15px;
+
+  opacity: 1;
+  transition: opacity .3s linear;
+}
+
+.profile__edit-btn:hover {
+  opacity: .6;
+}

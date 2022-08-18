@@ -1,0 +1,8 @@
+.card__info {
+  display: flex;
+  flex-wrap: wrap;
+
+  max-width: 246px;
+  width: 100%;
+  margin: 25px auto 0;
+}
