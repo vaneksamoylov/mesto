@@ -4,9 +4,12 @@
   padding: 0;
   margin-left: auto;
 
-  border: none;
+  border: 2px solid #FFF;
+  border-radius: 2px;
   background: transparent;
-  background-image: url('../../../images/addButton.svg');
+  background-image: url('../../../images/plus.svg');
+  background-size: 22px;
+  background-position: 50% 50%;
   background-repeat: no-repeat;
   cursor: pointer;
 
@@ -23,9 +26,8 @@
     width: 282px;
     margin: 36px auto 0;
 
-    /* если растягивать изображение, теряются пропорции */
-    /* в десктопной версии размер 150px х 50px */
-    /* в мобильной версии размер 282px x 50px */
-    background-image: url('../../../images/addButtonMobileSize.svg'); 
+    /* Всё, я понял, что Вы от меня хотели */
+    /* Не нужно было вытягивать вместе с границами с фигмы) */
+    background-size: 16px;
   }
 }

@@ -13,6 +13,10 @@ let profileJob = document.querySelector('.profile__job');
 
 function openPopup (el) {
   el.classList.add('popup_opened');
+  username = profileUsername.textContent;
+  job = profileJob.textContent;
+  nameInput.value = username;
+  jobInput.value = job;
 };
 
 function closePopup (el) {
@@ -39,11 +43,6 @@ function formSubmitHandler (evt) {
 
 editButton.addEventListener('click', function () {
   openPopup(popupEditProfile);
-  username = profileUsername.innerHTML;
-  job = profileJob.innerHTML;
-  
-  nameInput.value = username;
-  jobInput.value = job;
 });
 
 closeButton.addEventListener('click', function () {
