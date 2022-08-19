@@ -22,6 +22,10 @@
   .profile__add-btn {
     width: 282px;
     margin: 36px auto 0;
-    background-image: url('../../../images/addButtonMobileSize.svg');
+
+    /* если растягивать изображение, теряются пропорции */
+    /* в десктопной версии размер 150px х 50px */
+    /* в мобильной версии размер 282px x 50px */
+    background-image: url('../../../images/addButtonMobileSize.svg'); 
   }
 }

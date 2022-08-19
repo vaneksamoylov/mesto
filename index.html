@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesto</title>
+  <title>Место</title>
   <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
@@ -17,62 +17,60 @@
         <img src="./images/Cousteau.jpg" alt="Аватар" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__username">Жак-Ив Кусто</h1>
-          <button type="button" aria-label="edit" class="profile__edit-btn">
-            <img src="./images/editButton.svg" alt="Кнопка редактирования" class="profile__edit-btn-pic">
-          </button>
+          <button type="button" aria-label="edit" class="profile__edit-btn"></button>
           <p class="profile__job">Исследователь океана</p>
         </div>
-        <button class="profile__add-btn"></button>
+        <button class="profile__add-btn" type="button"></button>
       </section>
 
       <section class="cards">
-        <div class="card">
+        <article class="card">
           <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__image">
           <div class="card__info">
             <h2 class="card__place">Карачаевск</h2>
-            <button class="card__islike-btn"></button>
+            <button class="card__islike-btn" type="button"></button>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <img src="./images/elbrus.png" alt="Эльбрус" class="card__image">
           <div class="card__info">
             <h2 class="card__place">Гора Эльбрус</h2>
-            <button class="card__islike-btn"></button>
+            <button class="card__islike-btn" type="button"></button>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <img src="./images/dombai.png" alt="Домбай" class="card__image">
           <div class="card__info">
             <h2 class="card__place">Домбай</h2>
-            <button class="card__islike-btn"></button>
+            <button class="card__islike-btn" type="button"></button>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <img src="./images/elbrus.png" alt="Эльбрус" class="card__image">
           <div class="card__info">
             <h2 class="card__place">Гора Эльбрус</h2>
-            <button class="card__islike-btn"></button>
+            <button class="card__islike-btn" type="button"></button>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <img src="./images/dombai.png" alt="Домбай" class="card__image">
           <div class="card__info">
             <h2 class="card__place">Домбай</h2>
-            <button class="card__islike-btn"></button>
+            <button class="card__islike-btn" type="button"></button>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__image">
           <div class="card__info">
             <h2 class="card__place">Карачаево-Черкессия</h2>
-            <button class="card__islike-btn"></button>
+            <button class="card__islike-btn" type="button"></button>
           </div>
-        </div>
+        </article>
 
       </section>
     </main>
@@ -87,8 +85,8 @@
       <form action="#" class="popup__form" name="editInfo">
         <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
-          <input class="popup__input-text popup__input-text-username" name="user" required type="text" placeholder="Имя">
-          <input class="popup__input-text popup__input-text-job" name="job" required type="text" placeholder="Профессия">
+          <input class="popup__input-text popup__input-text_type_username" name="user" required type="text" placeholder="Имя">
+          <input class="popup__input-text popup__input-text_type_job" name="job" required type="text" placeholder="Профессия">
         </fieldset>
         <button class="popup__input-save-btn" type="submit">Сохранить</button>
       </form>

@@ -16,5 +16,6 @@
 @media (max-width: 767px) {
   .cards {
     grid-template-columns: 282px;
+    padding-top: 36px;
   }
 }

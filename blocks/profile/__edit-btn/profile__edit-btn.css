@@ -2,6 +2,8 @@
   border: none;
   cursor: pointer;
   background: transparent;
+  background-image: url('../../../images/editButton.svg');
+  background-size: cover;
   padding: 0;
   width: 24px;
   height: 24px;
