@@ -14,3 +14,13 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media (max-width: 767px) {
+  .profile__job {
+    font-size: 14px;
+    line-height: 16.94px;
+    max-width: 282px;
+    text-align: center;
+    padding-top: 14px;
+  }
+}

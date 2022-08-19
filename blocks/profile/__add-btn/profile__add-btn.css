@@ -6,6 +6,8 @@
 
   border: none;
   background: transparent;
+  background-image: url('../../../images/addButton.svg');
+  background-repeat: no-repeat;
   cursor: pointer;
 
   opacity: 1;
@@ -14,4 +16,12 @@
 
 .profile__add-btn:hover {
   opacity: .6;
+}
+
+@media (max-width: 767px) {
+  .profile__add-btn {
+    width: 282px;
+    margin: 36px auto 0;
+    background-image: url('../../../images/addButtonMobileSize.svg');
+  }
 }

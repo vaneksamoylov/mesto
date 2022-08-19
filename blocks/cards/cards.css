@@ -13,7 +13,7 @@
     justify-content: space-around;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .cards {
     grid-template-columns: 282px;
   }
