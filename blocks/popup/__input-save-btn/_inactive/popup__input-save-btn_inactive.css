@@ -1,0 +1,7 @@
+.popup__input-save-btn-inactive {
+  color: rgba(0, 0, 0, .2);
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, .2);
+
+  cursor: auto;
+}

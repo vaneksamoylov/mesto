@@ -15,11 +15,13 @@ const profileJob = document.querySelector(".profile__job");
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener('keydown', closeByEsc);
+  popup.addEventListener('click', closeByClickToOverlay);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener('keydown', closeByEsc);
+  popup.removeEventListener('click', closeByClickToOverlay);
 }
 
 function closeByEsc(evt) {
@@ -27,6 +29,17 @@ function closeByEsc(evt) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup); 
   }
+}
+
+function closeByClickToOverlay (evt) {
+  if (evt.target.classList.contains('popup')) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  };
+}
+
+function clickOutside() {
+
 }
 
 function formUserProfileSubmitHandler(evt) {
