@@ -38,11 +38,7 @@ function closeByClickToOverlay (evt) {
   };
 }
 
-function clickOutside() {
-
-}
-
-function formUserProfileSubmitHandler(evt) {
+function submitHandlerFormUserProfile(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
 
@@ -65,7 +61,7 @@ buttonCloseEditProfile.addEventListener("click", function () {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formEditProfileElement.addEventListener("submit", formUserProfileSubmitHandler);
+formEditProfileElement.addEventListener("submit", submitHandlerFormUserProfile);
 
 // Блок карточек
 const formAddCardElement = document.querySelector(".popup__form_add-card"); // Воспользуйтесь методом querySelector()
@@ -115,8 +111,6 @@ function createCard(name, link) {
 }
 
 function handleOpenPopupImage(evt) {
-  openPopup(popupImage);
-
   const imageFromCard = evt.target;
   const card = imageFromCard.closest(".card");
   const cardPlace = card.querySelector(".card__place");
@@ -124,6 +118,8 @@ function handleOpenPopupImage(evt) {
   imageOnPopupImage.src = imageFromCard.src;
   imageOnPopupImage.alt = imageCaptionOnPopupImage.textContent =
     cardPlace.textContent;
+
+  openPopup(popupImage);
 }
 
 function handleRemoveCard(evt) {
@@ -143,12 +139,9 @@ function renderInitialCards() {
 
 function handleFormAddCardSubmit(evt) {
   evt.preventDefault();
-
   renderCard(createCard(placeInput.value, linkInput.value), cardsList);
-
-  evt.target.reset();
-
   closePopup(popupAddCard);
+  evt.target.reset();
 }
 
 formAddCardElement.addEventListener("submit", handleFormAddCardSubmit);
