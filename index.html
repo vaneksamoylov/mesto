@@ -39,7 +39,9 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
           <input class="popup__input-text popup__input-text_type_username" name="user" required type="text" placeholder="Имя">
+          <span class="popup__input_type_error popup-name-error"></span>
           <input class="popup__input-text popup__input-text_type_job" name="job" required type="text" placeholder="Профессия">
+          <span class="popup__input_type_error popup-job-error"></span>
         </fieldset>
         <button class="popup__input-save-btn popup__input-save-btn_type_profile" type="submit">Сохранить</button>
       </form>
@@ -53,7 +55,9 @@
         <h2 class="popup__title">Новое место</h2>
         <fieldset class="popup__input-container">
           <input class="popup__input-text popup__input-text_type_place" name="place" required type="text" placeholder="Название">
+          <span class="popup__input_type_error popup-place-error"></span>
           <input class="popup__input-text popup__input-text_type_link" name="link" required type="url" placeholder="Ссылка на картинку">
+          <span class="popup__input_type_error popup-link-error"></span>
         </fieldset>
         <button class="popup__input-save-btn popup__input-save-btn_type_card" type="submit">Создать</button>
       </form>
@@ -80,6 +84,7 @@
     </article>
   </template>
 
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
