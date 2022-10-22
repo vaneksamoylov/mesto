@@ -26,6 +26,11 @@ function hasInvalidInput (inputList) {
   }); 
 };
 
+function blockSubmitButton (buttonElement, settings) {
+  buttonElement.classList.add(`${settings.inactiveButtonClass}`);
+  buttonElement.setAttribute('disabled', true);
+}
+
 function toggleButtonState (inputList, buttonElement, settings) {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(`${settings.inactiveButtonClass}`);
