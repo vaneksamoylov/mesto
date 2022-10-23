@@ -12,6 +12,17 @@ const jobInput = document.querySelector(".popup__input-text_type_job");
 const profileUsername = document.querySelector(".profile__username");
 const profileJob = document.querySelector(".profile__job");
 
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__input-save-btn',
+  inactiveButtonClass: 'popup__input-save-btn-inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+const submitNewCardButtonList = Array.from(document.querySelectorAll(".popup__input-save-btn"));
+
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener('keydown', closeByEsc);
@@ -146,6 +157,9 @@ function handleFormAddCardSubmit(evt) {
 
 formAddCardElement.addEventListener("submit", handleFormAddCardSubmit);
 buttonAddCard.addEventListener("click", function () {
+  submitNewCardButtonList.forEach((submitButton) => {
+    blockSubmitButton(submitButton, settings)
+  })
   openPopup(popupAddCard);
 });
 
