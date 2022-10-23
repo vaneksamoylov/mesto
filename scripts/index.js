@@ -21,7 +21,7 @@ const settings = {
   errorClass: 'popup__error_visible'
 };
 
-const submitNewCardButtonList = Array.from(document.querySelectorAll(".popup__input-save-btn"));
+const submitNewCardButton = document.querySelector(".popup__input-save-btn_type_card");
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -157,9 +157,7 @@ function handleFormAddCardSubmit(evt) {
 
 formAddCardElement.addEventListener("submit", handleFormAddCardSubmit);
 buttonAddCard.addEventListener("click", function () {
-  submitNewCardButtonList.forEach((submitButton) => {
-    blockSubmitButton(submitButton, settings)
-  })
+  blockSubmitButton(submitNewCardButton, settings);
   openPopup(popupAddCard);
 });
 
