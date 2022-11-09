@@ -26,10 +26,14 @@ function hasInvalidInput (inputList) {
   }); 
 };
 
+function blockSubmitButton (buttonElement, settings) {
+  buttonElement.classList.add(`${settings.inactiveButtonClass}`);
+  buttonElement.setAttribute('disabled', true);
+}
+
 function toggleButtonState (inputList, buttonElement, settings) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(`${settings.inactiveButtonClass}`);
-    buttonElement.setAttribute('disabled', true);
+    blockSubmitButton(buttonElement, settings);
   } else {
     buttonElement.classList.remove(`${settings.inactiveButtonClass}`);
     buttonElement.removeAttribute('disabled');
@@ -61,5 +65,5 @@ enableValidation({
   submitButtonSelector: '.popup__input-save-btn',
   inactiveButtonClass: 'popup__input-save-btn-inactive',
   inputErrorClass: 'popup__input_type_error',
-  errorClass: 'form__input_type_error'
+  errorClass: 'popup__error_visible'
 });
