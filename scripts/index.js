@@ -1,3 +1,7 @@
+import { FormValidator } from "./FormValidator";
+import { Card } from "./Card";
+import { initialCards } from "./cards";
+
 const buttonEdit = document.querySelector(".profile__edit-btn");
 const buttonCloseEditProfile = document.querySelector(
   ".popup__close-btn_type_profile"
