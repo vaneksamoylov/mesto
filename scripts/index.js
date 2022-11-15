@@ -53,7 +53,10 @@ const validatorCardForm = new FormValidator(settings, formAddCardElement);
 validatorCardForm.enableValidation();
 
 // Подключение валидации для формы редактирования профиля
-const validatorProfileForm = new FormValidator(settings, formEditProfileElement);
+const validatorProfileForm = new FormValidator(
+  settings,
+  formEditProfileElement
+);
 validatorProfileForm.enableValidation();
 formEditProfileElement.addEventListener("submit", submitHandlerFormUserProfile);
 
@@ -117,10 +120,10 @@ function handleAddCard(cardsData) {
 }
 
 buttonAddCard.addEventListener("click", () => {
-  placeInput.value = '';
-  linkInput.value = '';
+  placeInput.value = "";
+  linkInput.value = "";
   submitNewCardButton.classList.add(settings.inactiveButtonClass);
-  submitNewCardButton.setAttribute('disabled', true);
+  submitNewCardButton.setAttribute("disabled", true);
   openPopup(popupAddCard);
 });
 
