@@ -62,6 +62,7 @@ formEditProfileElement.addEventListener("submit", submitHandlerFormUserProfile);
 
 export { openPopup, popupImage, imageCaptionOnPopupImage, imageOnPopupImage };
 
+// Блок действий с попап-ами
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEsc);
@@ -88,14 +89,6 @@ function closeByClickToOverlay(evt) {
   }
 }
 
-function submitHandlerFormUserProfile(evt) {
-  evt.preventDefault();
-
-  profileUsername.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  closePopup(popupEditProfile);
-}
-
 buttonEdit.addEventListener("click", function () {
   openPopup(popupEditProfile);
 
@@ -106,6 +99,15 @@ buttonEdit.addEventListener("click", function () {
 buttonCloseEditProfile.addEventListener("click", function () {
   closePopup(popupEditProfile);
 });
+
+// Блок отправки изменений в профиле
+function submitHandlerFormUserProfile(evt) {
+  evt.preventDefault();
+
+  profileUsername.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  closePopup(popupEditProfile);
+}
 
 // функции для работы с карточками
 function createCardElement(cardsData) {
