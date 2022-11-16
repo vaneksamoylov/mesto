@@ -29,10 +29,6 @@ export default class FormValidator {
   }
 
   _toggleButtonState() {
-    this._buttonElement = this._form.querySelector(
-      this._settings.submitButtonSelector
-    );
-
     if (this._form.checkValidity()) {
       this._buttonElement.classList.remove(this._settings.inactiveButtonClass);
       this._buttonElement.removeAttribute("disabled");
@@ -54,6 +50,11 @@ export default class FormValidator {
         this._toggleButtonState();
       });
     });
+  }
+
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => this._hideInputError(inputElement))
   }
 
   enableValidation() {
