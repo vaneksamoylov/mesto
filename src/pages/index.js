@@ -32,6 +32,7 @@ const imageOnPopupImage = new PopupWithImage(
 );
 imageOnPopupImage.setEventListeners();
 
+// Блок логики с карточками
 const cardsList = new Section(
 	{
 		items: initialCards,
@@ -40,8 +41,7 @@ const cardsList = new Section(
 		},
 	},
 	".cards"
-);
-
+)
 cardsList.renderItems();
 
 function createCardElement(cardsData) {
@@ -56,6 +56,17 @@ function createCardElement(cardsData) {
 
 	return newCard;
 }
+
+
+
+///
+function handleAddCard(cardsData) {
+  const newCard = createCardElement(cardsData, '#card_template');
+  cardsList.addItem(newCard);
+}
+///
+
+
 
 // Попап формы для добавления новой карточки
 const popupAddCardForm = new PopupWithForm(document.querySelector('.popup_add-card'), (data) => {
