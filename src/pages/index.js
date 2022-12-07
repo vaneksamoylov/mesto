@@ -3,6 +3,7 @@ import {
 	formEditProfileElement,
 	formAddCardElement,
 	settings,
+	buttonEdit,
 	profileUsername,
 	profileJob,
 } from "../utils/constants.js";
@@ -57,18 +58,10 @@ function createCardElement(cardsData) {
 	return newCard;
 }
 
-
-
-///
 function handleAddCard(cardsData) {
   const newCard = createCardElement(cardsData);
   cardsList.addItem(newCard);
-	console.log(newCard);
-	console.log(cardsData);
 }
-///
-
-
 
 // Попап формы для добавления новой карточки
 const popupAddCardForm = new PopupWithForm(document.querySelector('.popup_add-card'), (data) => {
@@ -82,8 +75,20 @@ const popupAddCardForm = new PopupWithForm(document.querySelector('.popup_add-ca
 }); 
 popupAddCardForm.setEventListeners();
 
-
-document.querySelector(".profile__add-btn").addEventListener("click", () => {
+document.querySelector(".profile__add-btn").addEventListener("mousedown", () => {
   validatorCardForm.resetValidation();
   popupAddCardForm.open();
 });
+
+// Блок работы с профилем
+const userInfo = new UserInfo({ profileUsername, profileJob});
+
+const popupEditProfile = new PopupWithForm(document.querySelector('.popup_edit-profile'), (data) => {
+	userInfo.setUserInfo(data);
+	console.log(data)
+})
+popupEditProfile.setEventListeners();
+
+buttonEdit.addEventListener('mousedown', () => {
+	popupEditProfile.setInputValues(userInfo.getUserInfo());
+})
