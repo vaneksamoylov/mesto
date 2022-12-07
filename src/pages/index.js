@@ -61,8 +61,10 @@ function createCardElement(cardsData) {
 
 ///
 function handleAddCard(cardsData) {
-  const newCard = createCardElement(cardsData, '#card_template');
+  const newCard = createCardElement(cardsData);
   cardsList.addItem(newCard);
+	console.log(newCard);
+	console.log(cardsData);
 }
 ///
 
@@ -72,7 +74,7 @@ function handleAddCard(cardsData) {
 const popupAddCardForm = new PopupWithForm(document.querySelector('.popup_add-card'), (data) => {
   handleAddCard(
     {
-      name: data.name,
+      name: data.place,
       link: data.link
     },
     ".element-template"
