@@ -13,6 +13,7 @@
 * HTML
 * CSS
 * JavaScript
+* Webpack
 
 **Контакты**
 * telegram: [@vansamoff](https://t.me/vansamoff)
