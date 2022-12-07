@@ -9,13 +9,9 @@ export default class Section {
     this._container.prepend(item);
   }
 
-  clear() {
-    this._container.innerHTML = '';
-  }
-
   renderItems() {
-    this._renderedItems.forEach(item => {
+    this._renderedItems.forEach((item) => {
       this._renderer(item);
-    })
+    });
   }
 }
