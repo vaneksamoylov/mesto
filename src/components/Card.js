@@ -19,8 +19,8 @@ export default class Card {
     this._card = this._getTemplate();
     this._cardImage = this._card.querySelector(".card__image");
     this._cardImage.src = this._link;
-    this._cardImage.alt = this._card.querySelector(".card__place").textContent =
-      this._name;
+    this._cardImage.alt = this._name;
+    this._card.querySelector(".card__place").textContent = this._name;
     this._cardDeleteButton = this._card.querySelector(".card__delete-btn");
     this._cardLikeButton = this._card.querySelector(".card__islike-btn");
 
@@ -41,6 +41,7 @@ export default class Card {
 
   _handleRemoveCard() {
     this._card.remove();
+    this._card = null;
   }
 
   _handleSetLike() {

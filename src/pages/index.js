@@ -28,9 +28,7 @@ const validatorProfileForm = new FormValidator(
 validatorProfileForm.enableValidation();
 
 // Попап раскрывающий изображение в полный размер
-const imageOnPopupImage = new PopupWithImage(
-  document.querySelector(".popup_image")
-);
+const imageOnPopupImage = new PopupWithImage(".popup_image");
 imageOnPopupImage.setEventListeners();
 
 // Блок логики с карточками
@@ -65,7 +63,7 @@ function handleSubmitForm(cardsData) {
 
 // Попап формы для добавления новой карточки
 const popupAddCardForm = new PopupWithForm(
-  document.querySelector(".popup_add-card"),
+  ".popup_add-card",
   (data) => {
     handleSubmitForm({
       name: data.place,
@@ -77,7 +75,7 @@ popupAddCardForm.setEventListeners();
 
 document
   .querySelector(".profile__add-btn")
-  .addEventListener("mousedown", () => {
+  .addEventListener("click", () => {
     validatorCardForm.resetValidation();
     popupAddCardForm.open();
   });
@@ -86,13 +84,13 @@ document
 const userInfo = new UserInfo({ profileUsername, profileJob });
 
 const popupEditProfile = new PopupWithForm(
-  document.querySelector(".popup_edit-profile"),
+  ".popup_edit-profile",
   (data) => {
     userInfo.setUserInfo(data);
   }
 );
 popupEditProfile.setEventListeners();
 
-buttonEdit.addEventListener("mousedown", () => {
+buttonEdit.addEventListener("click", () => {
   popupEditProfile.setInputValues(userInfo.getUserInfo());
 });
