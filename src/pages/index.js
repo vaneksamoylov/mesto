@@ -8,6 +8,7 @@ import {
   profileUsername,
   profileJob,
 } from "../utils/constants.js";
+import { api } from "../components/Api";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Popup from "../components/Popup.js";
@@ -16,6 +17,15 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 
+// Подключение и работа с Api
+
+api.getUserProfile()
+  .then((res) => {
+    userInfo.setUserInfo(res);
+    // console.log(`res: ${res}`)
+  });
+
+api.getCardsFromServer()
 // Подключение валидации для формы добавления карточек
 const validatorCardForm = new FormValidator(settings, formAddCardElement);
 validatorCardForm.enableValidation();
