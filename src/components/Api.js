@@ -1,4 +1,4 @@
-class Api {
+export default class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
@@ -18,9 +18,27 @@ class Api {
       .catch(console.log)
   }
 
-  setUserProfile() {
-    
+  editUserProfile(name, about) {
+    // console.log(name, about)
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        'name': name,
+        'about': about
+      })
+    })
+      .then((res) => {
+        // console.log(res)
+        if (res.ok) {
+          return res.json();
+        } else {
+          Promise.reject(res.status);
+        }
+      })
+      .catch(console.log)
   }
+
 
   getCardsFromServer() {
     return fetch(`${this._baseUrl}/cards`, {
@@ -36,10 +54,3 @@ class Api {
       .catch(console.log);
   }
 }
-
-export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-54',
-  headers: {
-    authorization: '863b22da-7796-4e73-90ed-c34374fc920f'
-  }
-})
