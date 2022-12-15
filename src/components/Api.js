@@ -88,4 +88,23 @@ export default class Api {
       })
       .catch(console.log)
   }
+
+  deleteCardFromServer(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+      body: JSON.stringify({
+        'name': name,
+        'link': link
+      })
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          Promise.reject(res.status);
+        }
+      })
+      .catch(console.log)
+  }
 }

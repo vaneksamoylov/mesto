@@ -28,12 +28,16 @@ const api = new Api({
 })
 
 // Работа с профилем через Api
+let userId;
 
 api.getUserProfile()
   .then((res) => {
     userInfo.setUserInfo(res);
-    userInfo.setUserAvatar(res)
-  });
+    userInfo.setUserAvatar(res);
+
+    userId = res._id;
+  })
+  .catch(console.log);
 
 // Подключение валидации для формы добавления карточек
 const validatorCardForm = new FormValidator(settings, formAddCardElement);
@@ -72,24 +76,36 @@ const cardsList = new Section(
 // cardsList.renderItems();
 
 function createCardElement(cardsData) {
+  // console.log(cardsData)
   const card = new Card({
     cardsData: cardsData,
+    userId: userId,
     templateSelector: "#card_template",
     handleCardClick: (cardName, cardLink) => {
       imageOnPopupImage.open(cardName, cardLink);
     },
+    handleDeleteCard: (id) => {
+      popupDeleteCardConfirm.open()
+      popupDeleteCardConfirm.changeHandleSubmitForm(() => {
+        api.deleteCardFromServer(id)
+          .then(res => {
+            card.handleRemoveCard()
+            console.log(res)
+          })
+      })
+    }
   });
 
   // api.addCardToServer(cardName, cardLink);
 
   const newCard = card.createCard();
-
   return newCard;
 }
 
 function handleSubmitForm(cardsData) {
   const newCard = createCardElement(cardsData);
   cardsList.addItem(newCard);
+  // console.log(newCard)
 }
 
 api.getCardsFromServer()
@@ -102,11 +118,17 @@ api.getCardsFromServer()
 
 // Попап формы для добавления новой карточки
 const popupAddCardForm = new PopupWithForm(".popup_add-card", (data) => {
+  console.log('data', data)
   api.addCardToServer(data.place, data.link)
     .then(res => {
+      console.log('res', res)
       handleSubmitForm({
         name: res.name,
         link: res.link,
+        likes: res.likes,
+        _id: res._id,
+        userId: userId,
+        ownerId: res.owner._id 
       });
     })
 });
@@ -116,6 +138,11 @@ document.querySelector(".profile__add-btn").addEventListener("click", () => {
   validatorCardForm.resetValidation();
   popupAddCardForm.open();
 });
+
+// Попап удаления карточки
+
+const popupDeleteCardConfirm = new PopupWithForm(".popup_delete-card")
+popupDeleteCardConfirm.setEventListeners()
 
 // Блок работы с профилем
 const userInfo = new UserInfo({ profileUsername, profileJob, profileAvatar });
