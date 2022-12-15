@@ -17,11 +17,14 @@
 
 			<main class="content">
 				<section class="profile">
-					<img
-						src="<%=require('./images/Cousteau.jpg')%>"
-						alt="Аватар"
-						class="profile__avatar"
-					/>
+					<div class="profile__avatar">
+						<img
+							src=""
+							alt="Аватар"
+							class="profile__avatar-image"
+						/>
+					</div>
+					
 					<div class="profile__info">
 						<h1 class="profile__username"></h1>
 						<button
@@ -92,6 +95,41 @@
 			</div>
 		</div>
 
+		<div class="popup popup_edit-avatar">
+			<div class="popup__container">
+				<form
+					action="#"
+					class="popup__form popup__form_edit-avatar"
+					name="avatar-form"
+					novalidate
+				>
+					<h2 class="popup__title">Обновить аватар</h2>
+					<fieldset class="popup__input-container">
+						<input
+							id="avatar"
+							class="popup__input-text popup__input-text_type_avatar"
+							name="avatar"
+							required
+							type="url"
+							placeholder="Введите ссылку на изображение"
+						/>
+						<span id="avatar-error" class="popup__error avatar-error"></span>
+						<button
+						class="popup__input-save-btn popup__input-save-btn_type_avatar"
+						type="submit"
+						>
+							Сохранить
+						</button>
+					</fieldset>
+				</form>
+				<button
+				class="popup__close-btn popup__close-btn_type_avatar"
+				type="button"
+				aria-label="Закрыть"
+				></button>
+			</div>
+		</div>
+
 		<div class="popup popup_add-card">
 			<div class="popup__container">
 				<form
@@ -156,6 +194,7 @@
 				<div class="card__info">
 					<h2 class="card__place"></h2>
 					<button class="card__islike-btn" type="button"></button>
+					<span class="card__like-counter"></span>
 				</div>
 				<button type="button" class="card__delete-btn"></button>
 			</article>
