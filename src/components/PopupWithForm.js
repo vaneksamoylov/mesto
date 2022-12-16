@@ -25,6 +25,18 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
+  changeHandleSubmitForm(newSubmitHandler) {
+    this._handleSubmitForm = newSubmitHandler;
+  }
+
+  renderLoading (isLoading) {
+    if (isLoading) {
+      this._button.textContent = 'Сохранение...';
+    } else {
+      this._button.textContent = 'Сохранить';
+    }
+}
+
   setInputValues(data) {
     this._inputList.forEach((input) => {
       input.value = data[input.name];
