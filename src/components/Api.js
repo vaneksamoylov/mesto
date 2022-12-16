@@ -55,8 +55,8 @@ export default class Api {
       .catch(console.log)
   }
 
-
-  getCardsFromServer() {
+  // getCardsFromServer
+  getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
@@ -97,6 +97,36 @@ export default class Api {
         'name': name,
         'link': link
       })
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          Promise.reject(res.status);
+        }
+      })
+      .catch(console.log)
+  }
+
+  addLikeToCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          Promise.reject(res.status);
+        }
+      })
+      .catch(console.log)
+  }
+
+  deleteLikeFromCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
     })
       .then((res) => {
         if (res.ok) {

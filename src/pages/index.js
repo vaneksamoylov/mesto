@@ -93,22 +93,24 @@ function createCardElement(cardsData) {
             console.log(res)
           })
       })
+    },
+    handleLikeClick: (id) => {
+      api.addLikeToCard(id)
+        .then(res => {
+          card.setLikes(res.likes)
+        })
+      api.deleteLikeFromCard(id)
+        .then(res => {
+          card.setLikes(res.likes)
+        })
     }
   });
-
-  // api.addCardToServer(cardName, cardLink);
 
   const newCard = card.createCard();
   return newCard;
 }
 
-function handleSubmitForm(cardsData) {
-  const newCard = createCardElement(cardsData);
-  cardsList.addItem(newCard);
-  // console.log(newCard)
-}
-
-api.getCardsFromServer()
+api.getInitialCards()
   .then(cardList => {
     cardList.reverse().forEach(data => {
       const card = createCardElement(data);
@@ -122,14 +124,7 @@ const popupAddCardForm = new PopupWithForm(".popup_add-card", (data) => {
   api.addCardToServer(data.place, data.link)
     .then(res => {
       console.log('res', res)
-      handleSubmitForm({
-        name: res.name,
-        link: res.link,
-        likes: res.likes,
-        _id: res._id,
-        userId: userId,
-        ownerId: res.owner._id 
-      });
+      cardsList.addItem(createCardElement(res))
     })
 });
 popupAddCardForm.setEventListeners();
@@ -148,17 +143,25 @@ popupDeleteCardConfirm.setEventListeners()
 const userInfo = new UserInfo({ profileUsername, profileJob, profileAvatar });
 
 const popupEditProfile = new PopupWithForm(".popup_edit-profile", (data) => {
+  document.querySelector('.popup__input-save-btn_type_profile').textContent = "Сохранение..."
   api.editUserProfile(data.user, data.job)
     .then(res => {
         userInfo.setUserInfo(res);
+    })
+    .finally(() => {
+      document.querySelector('.popup__input-save-btn_type_profile').textContent = "Сохранить"
     })
 });
 popupEditProfile.setEventListeners();
 
 const popupEditAvatar = new PopupWithForm(".popup_edit-avatar", (data) => {
+  document.querySelector('.popup__input-save-btn_type_avatar').textContent = "Сохранение..."
   api.editUserAvatar(data.avatar)
     .then(res => {
       userInfo.setUserAvatar(res)
+    })
+    .finally(() => {
+      document.querySelector('.popup__input-save-btn_type_avatar').textContent = "Сохранить"
     })
 })
 popupEditAvatar.setEventListeners();

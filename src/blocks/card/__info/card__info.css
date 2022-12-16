@@ -1,6 +1,7 @@
 .card__info {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 
   max-width: 246px;
   width: 100%;
