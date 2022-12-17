@@ -9,7 +9,7 @@ export default class UserInfo {
     return {
       user: this._profileUsername.textContent,
       job: this._profileJob.textContent,
-      avatar: this._profileAvatar.src
+      avatar: this._profileAvatar.src,
     };
   }
 

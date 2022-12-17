@@ -1,13 +1,19 @@
 export default class Card {
-  constructor({ cardsData, userId, templateSelector, handleCardClick, handleDeleteCard, handleLikeClick }) {
+  constructor({
+    cardsData,
+    userId,
+    templateSelector,
+    handleCardClick,
+    handleDeleteCard,
+    handleLikeClick,
+  }) {
     this._name = cardsData.name;
     this._link = cardsData.link;
     this._likes = cardsData.likes;
     this._id = cardsData._id;
     this._userId = userId;
     this._ownerId = cardsData.owner._id;
-    this._likeCounterElement = 
-    this._templateSelector = templateSelector;
+    this._likeCounterElement = this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
     this._handleLikeClick = handleLikeClick;
@@ -33,13 +39,11 @@ export default class Card {
 
     this._likeCounterElement = this._card.querySelector(".card__like-counter");
 
-    this.setLikes(this._likes)
+    this.setLikes(this._likes);
 
-    if(this._ownerId !== this._userId) {
+    if (this._ownerId !== this._userId) {
       this._cardDeleteButton.style.display = "none";
     }
-
-
 
     this._setEventListeners();
 
@@ -49,11 +53,13 @@ export default class Card {
   setLikes(newArrayOfLikes) {
     this._likes = newArrayOfLikes;
 
-    this._likeCounterElement.textContent = this._likes.length; 
+    this._likeCounterElement.textContent = this._likes.length;
 
-    const isUserLikeCard = this._likes.find(user => user._id === this._userId)
-    if(isUserLikeCard) {
-      this._handleSetLike()
+    const isUserLikeCard = this._likes.find(
+      (user) => user._id === this._userId
+    );
+    if (isUserLikeCard) {
+      this._handleSetLike();
     }
   }
 
@@ -64,7 +70,9 @@ export default class Card {
     this._cardDeleteButton.addEventListener("click", () =>
       this._handleDeleteCard(this._id)
     );
-    this._cardLikeButton.addEventListener("click", () => this._handleLikeClick(this._id));
+    this._cardLikeButton.addEventListener("click", () =>
+      this._handleLikeClick(this._id)
+    );
   }
 
   handleRemoveCard() {

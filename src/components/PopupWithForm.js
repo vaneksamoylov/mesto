@@ -31,13 +31,13 @@ export default class PopupWithForm extends Popup {
     this._handleSubmitForm = newSubmitHandler;
   }
 
-  renderLoading (isLoading) {
+  renderLoading(isLoading) {
     if (isLoading) {
-      this._submitButton.textContent = 'Сохранение...';
+      this._submitButton.textContent = "Сохранение...";
     } else {
       this._submitButton.textContent = this._submitButtonInitialText;
     }
-}
+  }
 
   setInputValues(data) {
     this._inputList.forEach((input) => {
