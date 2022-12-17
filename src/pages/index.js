@@ -30,14 +30,18 @@ const api = new Api({
 // Работа с профилем через Api
 let userId;
 
-api.getUserProfile()
-  .then((res) => {
-    userInfo.setUserInfo(res);
-    userInfo.setUserAvatar(res);
+Promise.all([api.getUserProfile(), api.getInitialCards()])
+  .then(([userData, cardList]) => {
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
+    userId = userData._id;
 
-    userId = res._id;
+    cardList.reverse().forEach(data => {
+      const card = createCardElement(data);
+      cardsList.addItem(card);
+    })
   })
-  .catch(console.log);
+  .catch(console.log)
 
 // Подключение валидации для формы добавления карточек
 const validatorCardForm = new FormValidator(settings, formAddCardElement);
@@ -76,7 +80,6 @@ const cardsList = new Section(
 // cardsList.renderItems();
 
 function createCardElement(cardsData) {
-  // console.log(cardsData)
   const card = new Card({
     cardsData: cardsData,
     userId: userId,
@@ -92,6 +95,7 @@ function createCardElement(cardsData) {
             card.handleRemoveCard()
             console.log(res)
           })
+          .catch(console.log)
       })
     },
     handleLikeClick: (id) => {
@@ -99,10 +103,12 @@ function createCardElement(cardsData) {
         .then(res => {
           card.setLikes(res.likes)
         })
+        .catch(console.log)
       api.deleteLikeFromCard(id)
         .then(res => {
           card.setLikes(res.likes)
         })
+        .catch(console.log)
     }
   });
 
@@ -110,22 +116,19 @@ function createCardElement(cardsData) {
   return newCard;
 }
 
-api.getInitialCards()
-  .then(cardList => {
-    cardList.reverse().forEach(data => {
-      const card = createCardElement(data);
-      cardsList.addItem(card)
-    })
-  })
-
 // Попап формы для добавления новой карточки
 const popupAddCardForm = new PopupWithForm(".popup_add-card", (data) => {
-  console.log('data', data)
+  popupAddCardForm.renderLoading(true)
   api.addCardToServer(data.place, data.link)
     .then(res => {
-      console.log('res', res)
       cardsList.addItem(createCardElement(res))
+      popupAddCardForm.close()
     })
+    .catch(console.log)
+    .finally(() => {
+      popupAddCardForm.renderLoading(false)
+    })
+
 });
 popupAddCardForm.setEventListeners();
 
@@ -143,25 +146,29 @@ popupDeleteCardConfirm.setEventListeners()
 const userInfo = new UserInfo({ profileUsername, profileJob, profileAvatar });
 
 const popupEditProfile = new PopupWithForm(".popup_edit-profile", (data) => {
-  document.querySelector('.popup__input-save-btn_type_profile').textContent = "Сохранение..."
+  popupEditProfile.renderLoading(true)
   api.editUserProfile(data.user, data.job)
     .then(res => {
-        userInfo.setUserInfo(res);
+      userInfo.setUserInfo(res);
+      popupEditProfile.close()
     })
+    .catch(console.log)
     .finally(() => {
-      document.querySelector('.popup__input-save-btn_type_profile').textContent = "Сохранить"
+      popupEditProfile.renderLoading(false)
     })
 });
 popupEditProfile.setEventListeners();
 
 const popupEditAvatar = new PopupWithForm(".popup_edit-avatar", (data) => {
-  document.querySelector('.popup__input-save-btn_type_avatar').textContent = "Сохранение..."
+  popupEditAvatar.renderLoading(true)
   api.editUserAvatar(data.avatar)
     .then(res => {
       userInfo.setUserAvatar(res)
+      popupEditAvatar.close()
     })
+    .catch(console.log)
     .finally(() => {
-      document.querySelector('.popup__input-save-btn_type_avatar').textContent = "Сохранить"
+      popupEditAvatar.renderLoading(false)
     })
 })
 popupEditAvatar.setEventListeners();

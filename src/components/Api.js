@@ -4,18 +4,19 @@ export default class Api {
     this._headers = headers;
   }
 
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    } else {
+      Promise.reject(res.status);
+    }
+  }
+
   getUserProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          Promise.reject(res.status);
-        }
-      })
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 
   editUserAvatar(avatar) {
@@ -26,14 +27,7 @@ export default class Api {
         'avatar': avatar
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          Promise.reject(res.status);
-        }
-      })
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 
   editUserProfile(name, about) {
@@ -45,14 +39,7 @@ export default class Api {
         'about': about
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          Promise.reject(res.status);
-        }
-      })
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 
   // getCardsFromServer
@@ -60,14 +47,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          Promise.reject(res.status);
-        }
-      })
-      .catch(console.log);
+    .then(this._checkResponse)
   }
 
   addCardToServer(name, link) {
@@ -79,14 +59,7 @@ export default class Api {
         'link': link
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          Promise.reject(res.status);
-        }
-      })
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 
   deleteCardFromServer(cardId) {
@@ -98,14 +71,7 @@ export default class Api {
         'link': link
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          Promise.reject(res.status);
-        }
-      })
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 
   addLikeToCard(cardId) {
@@ -113,14 +79,7 @@ export default class Api {
       method: "PUT",
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          Promise.reject(res.status);
-        }
-      })
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 
   deleteLikeFromCard(cardId) {
@@ -128,13 +87,6 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          Promise.reject(res.status);
-        }
-      })
-      .catch(console.log)
+      .then(this._checkResponse)
   }
 }

@@ -6,7 +6,7 @@ export default class Card {
     this._id = cardsData._id;
     this._userId = userId;
     this._ownerId = cardsData.owner._id;
-    // this._ownerId = cardsData.ownerId;
+    this._likeCounterElement = 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
@@ -31,6 +31,8 @@ export default class Card {
     this._cardDeleteButton = this._card.querySelector(".card__delete-btn");
     this._cardLikeButton = this._card.querySelector(".card__islike-btn");
 
+    this._likeCounterElement = this._card.querySelector(".card__like-counter");
+
     this.setLikes(this._likes)
 
     if(this._ownerId !== this._userId) {
@@ -47,8 +49,7 @@ export default class Card {
   setLikes(newArrayOfLikes) {
     this._likes = newArrayOfLikes;
 
-    const likeCounterElement = this._card.querySelector('.card__like-counter');
-    likeCounterElement.textContent = this._likes.length; 
+    this._likeCounterElement.textContent = this._likes.length; 
 
     const isUserLikeCard = this._likes.find(user => user._id === this._userId)
     if(isUserLikeCard) {
